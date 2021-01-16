@@ -2,7 +2,7 @@ var knex = require('knex')({
     client: 'mysql',
     connection: {
       user : 'deco',
-      password : 'sempre190',
+      password : 'sua senha ;)',
       database : 'cadastro'
     }
 });
