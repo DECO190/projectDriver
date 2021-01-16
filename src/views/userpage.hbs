@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/userPage.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/scroll.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>  
+    <div id ='new-image-container' class="new-image-container" style="display: none;">
+        <form>
+            <img onclick = 'formClose()' class = 'x-icon' src="/images/close.svg" alt="">
+            <header>
+                <h1>Nova Imagem</h1>
+            </header>
+            <div class="input-container">
+                <div class="upload-bttn">
+                    <img src="/images/upload-icon.svg" alt="">
+                </div>
+                <input id = 'img-input' type="file" accept="image/png, image/jpeg">
+                <button id = 'up-bttn' onclick = 'generateLink()' type = 'button' class="upload-img-bttn">UPLOAD</button>
+            </div>
+        </form>
+    </div>
+
+    <div style = 'display: none' class="full-img-container">
+        <div class="icons-full-container">
+            <img onclick = 'closeFull()' src="/images/close.svg" class="close-full">
+            <img onclick = 'remove()' src="/images/trash.svg" class="trash-full">
+        </div>
+        <img class = 'full-img' src='/images/logo.svg' alt="">
+
+    </div>
+
+
+    <div class="content-container">
+        <header class="header">
+            <img class = 'logo' src="/images/logo.png" alt="">
+            <div class="header-img-container">
+                <img onclick = 'formShow()' class = 'plus-icon' src="/images/plus.svg" alt="">
+                <img onclick = 'logOut()' src="/images/logout.svg" class = 'log-out-icon' alt="">
+            </div>
+            
+        </header> 
+
+        <main>
+            
+
+            {{#each images.photos}}
+            
+                <div class="unit-img">
+                    <div class="img-container">
+                        <img src="{{this}}" alt="">
+                    </div>
+                    <img onclick = 'getFull(event)' class="full" src="/images/full-screen.svg" alt="">
+                </div>
+
+            {{/each}}
+
+            
+        </main>
+    </div>
+
+    <script>
+        function getFull(event) {
+            let bttn = event.target
+
+            let container = bttn.previousElementSibling
+
+            let img = container.childNodes[1]
+
+            let full = document.querySelector('.full-img-container')
+            full.style.display = 'flex'
+
+            let contentContainer = document.querySelector('.content-container')
+            contentContainer.style.filter = 'blur(1px)'
+            contentContainer.style.opacity = '80%'
+
+            let fullImg = document.querySelector('.full-img')
+            fullImg.src = `${img.src}` 
+
+        }
+
+        function closeFull(){
+            let full = document.querySelector('.full-img-container')
+            full.style.display = 'none'
+
+            let contentContainer = document.querySelector('.content-container')
+            contentContainer.style.filter = 'blur(0px)'
+            contentContainer.style.opacity = '100%'
+        }
+
+
+    </script>
+
+    <script src="/scripts/newImg.js"></script>
+    <script src="/scripts/removeImg.js"></script>
+    <script src="/scripts/getPhotos.js"></script>
+    <script src="/scripts/returnUserVerify.js"></script>
+
+</body>
+</html>
