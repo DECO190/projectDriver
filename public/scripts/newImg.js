@@ -50,7 +50,7 @@ function generateLink() {
         bttnImg.src = '/images/loading.gif'
         bttn.style.backgroundColor = 'white'
 
-        const CLIENT_ID = '87175677baaed32';
+        const CLIENT_ID = 'solicite uma chave de acesso';
         
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Client-ID ${CLIENT_ID}`);
